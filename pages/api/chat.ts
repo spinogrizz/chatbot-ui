@@ -55,7 +55,7 @@ const handler = async (req: Request): Promise<Response> => {
     const stream = await OpenAIStream(model, promptToSend, temperatureToUse, key, messagesToSend);
 
     // log last message
-    console.log('CHAT:', req.headers.get("X-Real-IP"), model.id, messagesToSend[messagesToSend.length - 1]['content']);
+    console.log('CHAT:', req.headers.get("X-Forwarded-For"), model.id, messagesToSend[messagesToSend.length - 1]['content']);
 
     return new Response(stream);
   } catch (error) {
